@@ -1,0 +1,49 @@
+﻿@page
+@model BettingSystem.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Prizų valdymas</h1>
+
+<p>
+    <a asp-page="Create">Užsakyti naują</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prize[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prize[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prize[0].Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Prize)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Redaguoti</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Apie</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Trinti</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
