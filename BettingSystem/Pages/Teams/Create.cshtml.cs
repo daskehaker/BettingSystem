@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using BettingSystem.Data;
 using BettingSystem.Models;
 
-namespace BettingSystem.Pages.Prizes
+namespace BettingSystem.Pages.Teams
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace BettingSystem.Pages.Prizes
         }
 
         [BindProperty]
-        public Prize Prize { get; set; }
+        public Team Team { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -36,7 +36,7 @@ namespace BettingSystem.Pages.Prizes
                 return Page();
             }
 
-            _context.Prize.Add(Prize);
+            _context.Team.Add(Team);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -3,14 +3,16 @@ using BettingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BettingSystem.Migrations
 {
     [DbContext(typeof(BettingSystemContext))]
-    partial class BettingSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20200309155803_team")]
+    partial class team
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

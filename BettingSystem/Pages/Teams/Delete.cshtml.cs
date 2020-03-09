@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BettingSystem.Data;
 using BettingSystem.Models;
 
-namespace BettingSystem.Pages.Prizes
+namespace BettingSystem.Pages.Teams
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace BettingSystem.Pages.Prizes
         }
 
         [BindProperty]
-        public Prize Prize { get; set; }
+        public Team Team { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace BettingSystem.Pages.Prizes
                 return NotFound();
             }
 
-            Prize = await _context.Prize.FirstOrDefaultAsync(m => m.ID == id);
+            Team = await _context.Team.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Prize == null)
+            if (Team == null)
             {
                 return NotFound();
             }
@@ -45,11 +45,11 @@ namespace BettingSystem.Pages.Prizes
                 return NotFound();
             }
 
-            Prize = await _context.Prize.FindAsync(id);
+            Team = await _context.Team.FindAsync(id);
 
-            if (Prize != null)
+            if (Team != null)
             {
-                _context.Prize.Remove(Prize);
+                _context.Team.Remove(Team);
                 await _context.SaveChangesAsync();
             }
 

@@ -162,3 +162,8 @@ C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.
 C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.1\Razor\Pages\Prizes\Edit.cshtml.g.cs
 C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.1\Razor\Pages\Prizes\Index.cshtml.g.cs
 C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.1\BettingSystem.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.1\Razor\Pages\Teams\Create.cshtml.g.cs
+C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.1\Razor\Pages\Teams\Delete.cshtml.g.cs
+C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.1\Razor\Pages\Teams\Details.cshtml.g.cs
+C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.1\Razor\Pages\Teams\Edit.cshtml.g.cs
+C:\Users\Paulius\source\repos\BettingSystem\BettingSystem\obj\Debug\netcoreapp3.1\Razor\Pages\Teams\Index.cshtml.g.cs

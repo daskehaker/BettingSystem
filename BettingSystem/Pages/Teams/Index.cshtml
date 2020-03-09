@@ -1,0 +1,35 @@
+﻿@page "{id:int?}"
+@model BettingSystem.Pages.Teams.IndexModel
+
+@{
+    ViewData["Title"] = "Komandos";
+}
+
+<h1>Komandos</h1>
+
+<p>
+    <a asp-page="Create">Kurti naują</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Team) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Redaguoti</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Trinti</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

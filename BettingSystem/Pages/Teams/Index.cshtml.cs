@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BettingSystem.Data;
 using BettingSystem.Models;
 
-namespace BettingSystem.Pages.Prizes
+namespace BettingSystem.Pages.Teams
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace BettingSystem.Pages.Prizes
             _context = context;
         }
 
-        public IList<Prize> Prize { get;set; }
+        public IList<Team> Team { get;set; }
 
         public async Task OnGetAsync()
         {
-            Prize = await _context.Prize.ToListAsync();
+            Team = await _context.Team.ToListAsync();
         }
     }
 }

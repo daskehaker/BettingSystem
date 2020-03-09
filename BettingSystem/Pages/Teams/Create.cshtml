@@ -1,0 +1,34 @@
+﻿@page "{id:int?}"
+@model BettingSystem.Pages.Teams.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Kuti naują</h1>
+
+<h4>Komana</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Team.Title" class="control-label"></label>
+                <input asp-for="Team.Title" class="form-control" />
+                <span asp-validation-for="Team.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kurti" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Atgal į sąrašą</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

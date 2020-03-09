@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using BettingSystem.Data;
 using BettingSystem.Models;
 
-namespace BettingSystem.Pages.Prizes
+namespace BettingSystem.Pages.Teams
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace BettingSystem.Pages.Prizes
         }
 
         [BindProperty]
-        public Prize Prize { get; set; }
+        public Team Team { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,9 +30,11 @@ namespace BettingSystem.Pages.Prizes
                 return NotFound();
             }
 
-            Prize = await _context.Prize.FirstOrDefaultAsync(m => m.ID == id);
+            Team = await _context.Team.AsNoTracking().FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Prize == null)
+            Console.WriteLine(Team);
+
+            if (Team == null)
             {
                 return NotFound();
             }
@@ -48,7 +50,7 @@ namespace BettingSystem.Pages.Prizes
                 return Page();
             }
 
-            _context.Attach(Prize).State = EntityState.Modified;
+            _context.Attach(Team).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +58,7 @@ namespace BettingSystem.Pages.Prizes
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PrizeExists(Prize.ID))
+                if (!TeamExists(Team.Title))
                 {
                     return NotFound();
                 }
@@ -69,9 +71,9 @@ namespace BettingSystem.Pages.Prizes
             return RedirectToPage("./Index");
         }
 
-        private bool PrizeExists(int id)
+        private bool TeamExists(string id)
         {
-            return _context.Prize.Any(e => e.ID == id);
+            return _context.Team.Any(e => e.Title == id);
         }
     }
 }

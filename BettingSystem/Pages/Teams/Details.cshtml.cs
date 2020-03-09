@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BettingSystem.Data;
 using BettingSystem.Models;
 
-namespace BettingSystem.Pages.Prizes
+namespace BettingSystem.Pages.Teams
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace BettingSystem.Pages.Prizes
             _context = context;
         }
 
-        public Prize Prize { get; set; }
+        public Team Team { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace BettingSystem.Pages.Prizes
                 return NotFound();
             }
 
-            Prize = await _context.Prize.FirstOrDefaultAsync(m => m.ID == id);
+            Team = await _context.Team.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Prize == null)
+            if (Team == null)
             {
                 return NotFound();
             }

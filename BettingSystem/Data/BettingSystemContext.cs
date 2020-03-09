@@ -15,5 +15,7 @@ namespace BettingSystem.Data
         }
 
         public DbSet<BettingSystem.Models.Prize> Prize { get; set; }
+
+        public DbSet<BettingSystem.Models.Team> Team { get; set; }
     }
 }
