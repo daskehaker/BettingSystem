@@ -1,0 +1,13 @@
+﻿@model IEnumerable<BettingSystem2.Models.Prize>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Keisti taškus į prizus</h1>
+
+<ul class="list-group">
+    @foreach(var item in Model)
+    {
+        <li class="list-group-item">@Html.DisplayFor(modelItem => item.Name)</li>
+    }
+</ul>

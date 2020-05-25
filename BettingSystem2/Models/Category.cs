@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace BettingSystem2.Models
+{
+    public class Category
+    {
+        //Properties
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
+        public string Title { get; set; }
+        
+
+        //Navigartion properties
+        public ICollection<Tourney> Tourneys { get; set; }
+    }
+}
