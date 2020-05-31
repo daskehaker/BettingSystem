@@ -24,7 +24,7 @@ namespace BettingSystem2
                 try
                 {
                     var context = services.GetRequiredService<SystemContext>();
-                    DbInitializer.Initialize(context);
+                    //DbInitializer.Initialize(context);
                 }
                 catch(Exception ex)
                 {

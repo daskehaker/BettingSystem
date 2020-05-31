@@ -6,9 +6,16 @@
 
 <h1>Index</h1>
 
+@if (ViewData["Nerado"].Equals(true))
+{<p class="text-danger">Įvyko klaida bandant pašalinti</p>}
+
+
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -22,20 +29,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.ID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Title)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Temp" asp-route-id="@item.ID">Delete</a>
+                    @if (ViewData["Patvirtint"].ToString() == @item.ID.ToString())
+                    {
+                <p class="text-danger">Ar tikrai norite pašalinti šį įrašą? <a asp-action="Delete" asp-route-id="@item.ID">Taip</a>  |   <a asp-action="Index">Ne</a></p>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

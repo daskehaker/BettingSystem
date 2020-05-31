@@ -3,11 +3,52 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Keisti taškus į prizus</h1>
-
-<ul class="list-group">
-    @foreach(var item in Model)
+@{
+    var myMessage = "";
+    var Points = ViewData["Points"].ToString();
+    if (ViewData["Test"].Equals(true))
     {
-        <li class="list-group-item">@Html.DisplayFor(modelItem => item.Name)</li>
+        myMessage ="Turite nepakankamai Taškų šiam prizui įsigyti";
     }
-</ul>
+}
+
+
+<h1>Keisti taškus į prizus</h1>
+<h5 class="text-danger">@myMessage</h5>
+<h3>Jūsų taškai :@Points</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price) $
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    <a asp-controller="SentForm" asp-action="SentFormView" asp-route-id="@item.ID">Užsisakyti</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

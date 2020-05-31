@@ -20,8 +20,13 @@ namespace BettingSystem2.Controllers
         }
 
         // GET: Tourneys
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? err)
         {
+            ViewData["Nerado"] = false;
+            if (err == -1) ViewData["Nerado"] = true;
+
+            ViewData["Patvirtint"] = 0;
+            if (err > 0) ViewData["Patvirtint"] = err;
             var systemContext = _context.Tourneys.Include(t => t.Category);
             return View(await systemContext.ToListAsync());
         }
@@ -49,7 +54,8 @@ namespace BettingSystem2.Controllers
         // GET: Tourneys/Create
         public IActionResult Create()
         {
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "ID");
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "Title");
+            //ViewData["Category"]
             return View();
         }
 
@@ -83,7 +89,7 @@ namespace BettingSystem2.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "ID", tourney.CategoryID);
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "Title", tourney.CategoryID);
             return View(tourney);
         }
 
@@ -123,12 +129,25 @@ namespace BettingSystem2.Controllers
             return View(tourney);
         }
 
-        // GET: Tourneys/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Temp(int? id)
         {
             if (id == null)
             {
                 return NotFound();
+            }
+            var tourney = await _context.Tourneys
+                .Include(t => t.Category)
+                .FirstOrDefaultAsync(m => m.ID == id);
+
+            return RedirectToAction("Index", new { err = id });
+        }
+
+        // GET: Tourneys/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index", new { err = -1 });
             }
 
             var tourney = await _context.Tourneys
@@ -136,10 +155,12 @@ namespace BettingSystem2.Controllers
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (tourney == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", new { err = -1 });
             }
+            
+            return await DeleteConfirmed(id);
 
-            return View(tourney);
+            //return View(tourney);
         }
 
         // POST: Tourneys/Delete/5
@@ -148,6 +169,20 @@ namespace BettingSystem2.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tourney = await _context.Tourneys.FindAsync(id);
+            _context.Tourneys.Remove(tourney);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // POST: Tourneys/Delete/5
+        [HttpPost]
+        public async Task<IActionResult> DeleteTrue(int id)
+        {
+            var tourney = await _context.Tourneys.Where(m => m.ID == id).SingleAsync();
+            if (tourney == null)
+            {
+                return RedirectToAction("Index", new { err = -1 });
+            }
             _context.Tourneys.Remove(tourney);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

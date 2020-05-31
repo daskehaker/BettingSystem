@@ -1,0 +1,44 @@
+﻿@model BettingSystem2.Models.SentForm
+@{
+    ViewData["Title"] = "SentFormView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Prizo užsakymo forma</h1>
+
+@*@Html.DisplayFor(model => model.Prize.ID)
+@Html.DisplayFor(model => model.Prize.Price)
+@Html.DisplayFor(model => model.Prize.Name)
+@Html.DisplayFor(model => model.UserId)
+@Html.DisplayFor(model => model.UserPoinst)*@
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="OrderPrize">
+            <div class="form-group">
+                <input type="hidden" asp-for="UserPoinst" />
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="PrizePrice" />
+                <input type="hidden" asp-for="Prize" />
+                <label asp-for="Name" class="col-form-label-lg">Vardas</label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger" style="width: 200px; display:block;"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="col-form-label-lg">Elektroninis paštas</label>
+                <input asp-for="Email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger" style="width: 200px; display:block;"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="col-form-label-lg">Adresas</label>
+                <input asp-for="Address" class="form-control" required />
+                <span asp-validation-for="Address" class="text-danger" style="width: 200px; display:block;"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Užsakyti" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+    </div>
+</div>

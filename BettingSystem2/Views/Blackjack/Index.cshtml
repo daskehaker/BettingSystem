@@ -1,0 +1,26 @@
+﻿@model BettingSystem2.Models.PlayedGame
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var myMessage = "";
+    if (ViewData["err"].Equals(true))
+    {
+        myMessage = "Turite nepakankamai Taškų";
+    }
+}
+@myMessage
+<h1>Įveskite norimą sumą žaisti</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index2">
+            <div class="form-group">
+                <input asp-for="Points" id="input" value="" />
+                <input type="submit" id="clickButton" value="Ivedimas" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
